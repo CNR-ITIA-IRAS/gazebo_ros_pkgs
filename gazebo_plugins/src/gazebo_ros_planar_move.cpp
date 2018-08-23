@@ -168,6 +168,7 @@ namespace gazebo
   void GazeboRosPlanarMove::UpdateChild()
   {
     boost::mutex::scoped_lock scoped_lock(lock);
+    parent_->SetGravityMode(true);
 #if GAZEBO_MAJOR_VERSION >= 8
     ignition::math::Pose3d pose = parent_->WorldPose();
 #else
@@ -177,7 +178,7 @@ namespace gazebo
     parent_->SetLinearVel(ignition::math::Vector3d(
           x_ * cosf(yaw) - y_ * sinf(yaw),
           y_ * cosf(yaw) + x_ * sinf(yaw),
-          0));
+          -0.1));
     parent_->SetAngularVel(ignition::math::Vector3d(0, 0, rot_));
     if (odometry_rate_ > 0.0) {
 #if GAZEBO_MAJOR_VERSION >= 8

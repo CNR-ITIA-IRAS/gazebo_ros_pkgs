@@ -100,6 +100,7 @@ catkin_package(
   gazebo_ros_imu_sensor
   gazebo_ros_f3d 
   gazebo_ros_ft_sensor
+  gazebo_ros_moveit_planning_scene
   gazebo_ros_bumper
   gazebo_ros_template
   gazebo_ros_projector
@@ -283,6 +284,10 @@ target_link_libraries(gazebo_ros_hand_of_god ${catkin_LIBRARIES} ${Boost_LIBRARI
 add_library(gazebo_ros_ft_sensor src/gazebo_ros_ft_sensor.cpp)
 target_link_libraries(gazebo_ros_ft_sensor ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
+add_library(gazebo_ros_moveit_planning_scene src/gazebo_ros_moveit_planning_scene.cpp)
+add_dependencies(gazebo_ros_moveit_planning_scene ${catkin_EXPORTED_TARGETS})
+target_link_libraries(gazebo_ros_moveit_planning_scene ${GAZEBO_LIBRARIES} ${catkin_LIBRARIES})
+
 add_library(gazebo_ros_range src/gazebo_ros_range.cpp)
 target_link_libraries(gazebo_ros_range ${catkin_LIBRARIES} ${Boost_LIBRARIES} RayPlugin)
 
@@ -317,6 +322,7 @@ install(TARGETS
   gazebo_ros_imu_sensor
   gazebo_ros_f3d
   gazebo_ros_ft_sensor
+  gazebo_ros_moveit_planning_scene
   gazebo_ros_bumper
   gazebo_ros_hand_of_god
   gazebo_ros_template
